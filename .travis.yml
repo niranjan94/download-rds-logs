@@ -1,0 +1,20 @@
+language: go
+
+go: "1.10.x"
+
+install: make setup
+
+script:
+  - make ci
+  - rm -rf dist
+
+notifications:
+  email: false
+
+deploy:
+- provider: script
+  skip_cleanup: true
+  script: curl -sL http://git.io/goreleaser | bash
+  on:
+    tags: true
+    condition: $TRAVIS_OS_NAME = linux

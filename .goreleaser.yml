@@ -1,0 +1,27 @@
+project_name: download-rds-logs
+git:
+  short_hash: true
+
+builds:
+  - main: main.go
+    goos:
+      - windows
+      - darwin
+      - linux
+      - freebsd
+      - openbsd
+    goarch:
+      - amd64
+      - 386
+
+archive:
+  format: tar.gz
+  replacements:
+    amd64: 64-bit
+    darwin: mac_os-darwin
+  files:
+    - LICENSE
+    - README.md
+  format_overrides:
+    - goos: windows
+      format: zip
